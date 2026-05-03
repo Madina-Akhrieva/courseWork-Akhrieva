@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
+//main
 public class EducationClientApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
