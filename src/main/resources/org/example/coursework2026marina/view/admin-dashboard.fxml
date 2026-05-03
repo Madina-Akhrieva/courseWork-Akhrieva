@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.coursework2026marina.client.controller.AdminDashboardController"
+            prefWidth="920" prefHeight="680"
+            style="-fx-background-color: #FFF0F5; -fx-font-family: 'Segoe UI';">
+    <top>
+        <HBox spacing="20" style="-fx-padding: 14 20; -fx-background-color: #FF69B4; -fx-alignment: CENTER_LEFT;">
+            <Label text="🌸" style="-fx-font-size: 20;"/>
+            <Label fx:id="userLabel"
+                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Выход" onAction="#handleLogout"
+                    style="-fx-background-color: white; -fx-text-fill: #FF69B4; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 6 18; -fx-cursor: hand;"/>
+        </HBox>
+    </top>
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE"
+                 style="-fx-background-color: #FFF0F5; -fx-tab-min-height: 38;">
+
+            <!-- Программа -->
+            <Tab text="📚 Программа">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <Label text="Новая образовательная программа"
+                           style="-fx-font-weight: bold; -fx-font-size: 15; -fx-text-fill: #C71585;"/>
+                    <Label text="Название:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="programNameField" promptText="Название программы"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Label text="Описание:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="programDescField" promptText="Описание"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Label text="Длительность (дни):"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="durationField" promptText="30"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Label text="Макс. студентов:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="maxStudentsField" promptText="50"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Button text="💖 Создать программу" onAction="#handleCreateProgram"
+                            style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 9 24; -fx-cursor: hand;"/>
+                </VBox>
+            </Tab>
+
+            <!-- Модуль -->
+            <Tab text="📖 Модуль">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <Label text="Новый модуль курса"
+                           style="-fx-font-weight: bold; -fx-font-size: 15; -fx-text-fill: #C71585;"/>
+                    <Label text="ID программы:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="moduleProgramIdField" promptText="Введите ID программы"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Label text="Название модуля:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="moduleNameField" promptText="Название модуля"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Label text="Тема:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="moduleTopicField" promptText="Тема модуля"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Button text="💖 Создать модуль" onAction="#handleCreateModule"
+                            style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 9 24; -fx-cursor: hand;"/>
+                </VBox>
+            </Tab>
+
+            <!-- Оценка -->
+            <Tab text="⭐ Оценка">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <Label text="Выставить оценку студенту"
+                           style="-fx-font-weight: bold; -fx-font-size: 15; -fx-text-fill: #C71585;"/>
+                    <Label text="ID студента:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="studentIdField" promptText="ID студента"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Label text="ID модуля:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="moduleIdField" promptText="ID модуля"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Label text="Оценка (0–100):"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="scoreField" promptText="85.5"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Button text="⭐ Выставить оценку" onAction="#handleRecordGrade"
+                            style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 9 24; -fx-cursor: hand;"/>
+                </VBox>
+            </Tab>
+
+            <!-- Задание -->
+            <Tab text="📝 Задание">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <Label text="Создать задание к программе"
+                           style="-fx-font-weight: bold; -fx-font-size: 15; -fx-text-fill: #C71585;"/>
+                    <Label text="ID программы:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="assignmentProgramIdField" promptText="ID программы"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Label text="Название задания:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="assignmentTitleField" promptText="Напр.: Задание 1 — Типы данных"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Label text="Описание задания:"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="assignmentDescField" promptText="Подробное описание задания"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Label text="Срок сдачи (YYYY-MM-DD):"
+                           style="-fx-font-size: 12; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextField fx:id="assignmentDueDateField" promptText="2026-05-01"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 8 12; -fx-border-width: 1.5;"/>
+                    <Button text="📝 Создать задание" onAction="#handleCreateAssignment"
+                            style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 9 24; -fx-cursor: hand;"/>
+                </VBox>
+            </Tab>
+
+            <!-- Ответы студентов -->
+            <Tab text="📂 Ответы">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <Label text="Ответы студентов на задания"
+                           style="-fx-font-weight: bold; -fx-font-size: 15; -fx-text-fill: #C71585;"/>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Фильтр по ID задания (пусто = все):"
+                               style="-fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                        <TextField fx:id="submissionsFilterField" promptText="ID задания" prefWidth="140"
+                                   style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 6 10; -fx-border-width: 1.5;"/>
+                        <Button text="🔍 Загрузить" onAction="#handleViewSubmissions"
+                                style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 18; -fx-padding: 6 16; -fx-cursor: hand;"/>
+                    </HBox>
+                    <TableView fx:id="submissionsTable" VBox.vgrow="ALWAYS" prefHeight="460"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-width: 1.5;">
+                        <columns>
+                            <TableColumn fx:id="subAssignmentColumn" text="Задание" prefWidth="220"/>
+                            <TableColumn fx:id="subStudentColumn" text="Студент" prefWidth="200"/>
+                            <TableColumn fx:id="subFileColumn" text="Файл" prefWidth="180"/>
+                            <TableColumn fx:id="subSizeColumn" text="Размер" prefWidth="80"/>
+                            <TableColumn fx:id="subDateColumn" text="Загружено" prefWidth="180"/>
+                        </columns>
+                        <placeholder><Label text="Нет ответов" style="-fx-text-fill: #DB7093;"/></placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Список студентов -->
+            <Tab text="👩‍🎓 Студенты">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Зарегистрированные студенты"
+                               style="-fx-font-weight: bold; -fx-font-size: 15; -fx-text-fill: #C71585;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="🔄 Обновить" onAction="#handleViewStudents"
+                                style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 18; -fx-padding: 6 16; -fx-cursor: hand;"/>
+                    </HBox>
+                    <TableView fx:id="studentsTable" VBox.vgrow="ALWAYS" prefHeight="500"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-width: 1.5;">
+                        <columns>
+                            <TableColumn fx:id="studentNameColumn" text="Имя" prefWidth="280"/>
+                            <TableColumn fx:id="studentUsernameColumn" text="Логин" prefWidth="180"/>
+                            <TableColumn fx:id="studentEnrolledColumn" text="Записан на" prefWidth="140"/>
+                        </columns>
+                        <placeholder><Label text="Нет студентов" style="-fx-text-fill: #DB7093;"/></placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Аналитика -->
+            <Tab text="📊 Аналитика">
+                <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                            style="-fx-background-color: #FFF0F5;">
+                    <content>
+                        <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                            <Button text="📊 Загрузить аналитику" onAction="#handleViewAnalytics" prefWidth="240"
+                                    style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 9 24; -fx-cursor: hand;"/>
+                            <HBox spacing="14" prefHeight="360" minHeight="360">
+                                <PieChart fx:id="programDistributionChart" title="Распределение студентов"
+                                          prefWidth="360" prefHeight="340" minHeight="340"/>
+                                <BarChart fx:id="programAvgScoreChart" title="Средний балл по программам"
+                                          prefWidth="500" prefHeight="340" minHeight="340" categoryGap="20" barGap="6">
+                                    <xAxis><CategoryAxis label="Программа" tickLabelRotation="25"/></xAxis>
+                                    <yAxis><NumberAxis label="Средний балл" lowerBound="0.0" upperBound="100.0" tickUnit="10.0" autoRanging="false"/></yAxis>
+                                </BarChart>
+                            </HBox>
+                            <Label text="Эффективность программ"
+                                   style="-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: #C71585;"/>
+                            <TableView fx:id="programEffectivenessTable" prefHeight="170"
+                                       style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-width: 1.5;">
+                                <columns>
+                                    <TableColumn fx:id="programNameColumn" text="Программа" prefWidth="360"/>
+                                    <TableColumn fx:id="programStudentsColumn" text="Студентов" prefWidth="140"/>
+                                    <TableColumn fx:id="programAvgScoreColumn" text="Средний балл" prefWidth="180"/>
+                                </columns>
+                            </TableView>
+                            <Label text="Студенты в зоне риска"
+                                   style="-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: #C71585;"/>
+                            <TableView fx:id="riskStudentsTable" prefHeight="150"
+                                       style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-width: 1.5;">
+                                <columns>
+                                    <TableColumn fx:id="riskStudentNameColumn" text="Студент" prefWidth="500"/>
+                                    <TableColumn fx:id="riskStudentScoreColumn" text="Средний балл" prefWidth="180"/>
+                                </columns>
+                            </TableView>
+                            <Label text="Топ модулей"
+                                   style="-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: #C71585;"/>
+                            <TableView fx:id="topModulesTable" prefHeight="150" VBox.vgrow="ALWAYS"
+                                       style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-width: 1.5;">
+                                <columns>
+                                    <TableColumn fx:id="topModuleNameColumn" text="Модуль" prefWidth="500"/>
+                                    <TableColumn fx:id="topModuleScoreColumn" text="Средний балл" prefWidth="180"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </Tab>
+
+        </TabPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.coursework2026marina.client.controller.StudentDashboardController"
+            prefWidth="1020" prefHeight="680"
+            style="-fx-background-color: #FFF0F5; -fx-font-family: 'Segoe UI';">
+    <top>
+        <HBox spacing="20" style="-fx-padding: 14 20; -fx-background-color: #FF69B4; -fx-alignment: CENTER_LEFT;">
+            <Label text="🌸" style="-fx-font-size: 20;"/>
+            <Label fx:id="userLabel"
+                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="🔄 Обновить" onAction="#handleRefresh"
+                    style="-fx-background-color: white; -fx-text-fill: #FF69B4; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 6 16; -fx-cursor: hand;"/>
+            <Button text="Выход" onAction="#handleLogout"
+                    style="-fx-background-color: #FFB6C1; -fx-text-fill: #8B0057; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 6 16; -fx-cursor: hand;"/>
+        </HBox>
+    </top>
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE"
+                 style="-fx-background-color: #FFF0F5; -fx-tab-min-height: 38;">
+
+            <!-- Программы и запись -->
+            <Tab text="📚 Программы">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <Label text="Доступные образовательные программы"
+                           style="-fx-font-weight: bold; -fx-font-size: 15; -fx-text-fill: #C71585;"/>
+                    <ListView fx:id="programsListView" VBox.vgrow="ALWAYS" prefHeight="400"
+                              style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 8; -fx-border-width: 1.5;"/>
+                    <HBox spacing="12">
+                        <Button text="💖 Записаться на программу" onAction="#handleEnrollProgram" prefWidth="240"
+                                style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 9 16; -fx-cursor: hand;"/>
+                        <Button text="📋 Загрузить задания" onAction="#handleLoadAssignments" prefWidth="240"
+                                style="-fx-background-color: #FFB6C1; -fx-text-fill: #8B0057; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 9 16; -fx-cursor: hand;"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- Задания и загрузка ответа -->
+            <Tab text="📝 Задания">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <Label text="Задания выбранной программы"
+                           style="-fx-font-weight: bold; -fx-font-size: 15; -fx-text-fill: #C71585;"/>
+                    <Label text="(Для загрузки заданий выберите программу на вкладке «Программы» и нажмите «Загрузить задания»)"
+                           style="-fx-text-fill: #DB7093; -fx-font-size: 11;"/>
+                    <TableView fx:id="assignmentsTable" VBox.vgrow="ALWAYS" prefHeight="280"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-width: 1.5;">
+                        <columns>
+                            <TableColumn fx:id="assignmentTitleColumn" text="Название" prefWidth="240"/>
+                            <TableColumn fx:id="assignmentDescColumn" text="Описание" prefWidth="400"/>
+                            <TableColumn fx:id="assignmentDueColumn" text="Срок сдачи" prefWidth="130"/>
+                        </columns>
+                        <placeholder><Label text="Выберите программу и нажмите «Загрузить задания»" style="-fx-text-fill: #DB7093;"/></placeholder>
+                    </TableView>
+                    <Separator/>
+                    <Label text="Загрузить ответ на выбранное задание"
+                           style="-fx-font-weight: bold; -fx-font-size: 13; -fx-text-fill: #C71585;"/>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <Label text="Файл:" style="-fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                        <Label fx:id="selectedFileLabel" text="Файл не выбран" style="-fx-text-fill: #DB7093;"/>
+                        <Button text="📁 Выбрать файл" onAction="#handleChooseFile"
+                                style="-fx-background-color: #FFB6C1; -fx-text-fill: #8B0057; -fx-font-weight: bold; -fx-background-radius: 18; -fx-padding: 6 16; -fx-cursor: hand;"/>
+                    </HBox>
+                    <Label text="Комментарий (необязательно):" style="-fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+                    <TextArea fx:id="submitCommentArea" promptText="Введите комментарий к ответу..." prefHeight="70" maxHeight="100"
+                              style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1.5;"/>
+                    <Button text="📤 Загрузить ответ" onAction="#handleSubmitFile"
+                            style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 9 24; -fx-cursor: hand;"/>
+                </VBox>
+            </Tab>
+
+            <!-- Успеваемость -->
+            <Tab text="⭐ Успеваемость">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <Label text="Моя успеваемость"
+                           style="-fx-font-weight: bold; -fx-font-size: 15; -fx-text-fill: #C71585;"/>
+                    <TableView fx:id="progressTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-width: 1.5;">
+                        <columns>
+                            <TableColumn fx:id="moduleColumn" text="Модуль" prefWidth="220"/>
+                            <TableColumn fx:id="scoreColumn" text="Оценка" prefWidth="100"/>
+                            <TableColumn fx:id="recordedAtColumn" text="Дата" prefWidth="220"/>
+                        </columns>
+                        <placeholder><Label text="Оценок пока нет" style="-fx-text-fill: #DB7093;"/></placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Мои ответы -->
+            <Tab text="📂 Мои ответы">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <Label text="Мои загруженные ответы"
+                           style="-fx-font-weight: bold; -fx-font-size: 15; -fx-text-fill: #C71585;"/>
+                    <TableView fx:id="mySubmissionsTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-width: 1.5;">
+                        <columns>
+                            <TableColumn fx:id="subTitleColumn" text="Задание" prefWidth="280"/>
+                            <TableColumn fx:id="subFileColumn" text="Файл" prefWidth="220"/>
+                            <TableColumn fx:id="subDateColumn" text="Загружено" prefWidth="200"/>
+                        </columns>
+                        <placeholder><Label text="Вы ещё не загружали ответы" style="-fx-text-fill: #DB7093;"/></placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- YouTube Курсы -->
+            <Tab text="🎬 YouTube Курсы">
+                <VBox spacing="14" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                    <Label text="🎓 Бесплатные курсы на YouTube"
+                           style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #C71585;"/>
+                    <Label text="Выберите категорию, затем курс и нажмите «Открыть в браузере»"
+                           style="-fx-text-fill: #DB7093; -fx-font-size: 12;"/>
+                    <HBox spacing="10" style="-fx-padding: 0 0 4 0;">
+                        <Button text="☕ Java" onAction="#handleShowJavaCourses"
+                                style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 8 18; -fx-cursor: hand;"/>
+                        <Button text="🐍 Python" onAction="#handleShowPythonCourses"
+                                style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 8 18; -fx-cursor: hand;"/>
+                        <Button text="🌐 Web" onAction="#handleShowWebCourses"
+                                style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 8 18; -fx-cursor: hand;"/>
+                        <Button text="🔢 Алгоритмы" onAction="#handleShowAlgoCourses"
+                                style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 8 18; -fx-cursor: hand;"/>
+                        <Button text="🗄 Базы данных" onAction="#handleShowDbCourses"
+                                style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 8 18; -fx-cursor: hand;"/>
+                    </HBox>
+                    <ListView fx:id="youtubeCoursesListView" VBox.vgrow="ALWAYS" prefHeight="380"
+                              style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 8; -fx-border-width: 1.5;"/>
+                    <HBox spacing="14" alignment="CENTER_LEFT">
+                        <Button text="▶  Открыть в браузере" onAction="#handleOpenYouTubeCourse"
+                                style="-fx-background-color: #FF1493; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 9 24; -fx-cursor: hand;"/>
+                        <Label fx:id="youtubeCourseInfoLabel" text=""
+                               style="-fx-text-fill: #DB7093; -fx-font-size: 11;"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+         fx:controller="org.example.coursework2026marina.client.controller.LoginController"
+         fx:id="tabPane"
+         prefWidth="460" prefHeight="430"
+         style="-fx-background-color: #FFF0F5; -fx-font-family: 'Segoe UI';">
+
+    <!-- Login Tab -->
+    <Tab text="✨ Вход" closable="false">
+        <VBox spacing="14" style="-fx-padding: 35 40 35 40; -fx-background-color: #FFF0F5;">
+            <Label text="💖 Добро пожаловать!"
+                   style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #C71585;"/>
+            <Label text="Войдите в свой аккаунт"
+                   style="-fx-font-size: 12; -fx-text-fill: #DB7093;"/>
+
+            <Label text="Логин:"
+                   style="-fx-font-size: 13; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+            <TextField fx:id="usernameField" promptText="Введите логин"
+                       style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 9 14; -fx-font-size: 13; -fx-border-width: 2;"/>
+
+            <Label text="Пароль:"
+                   style="-fx-font-size: 13; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+            <PasswordField fx:id="passwordField" promptText="Введите пароль"
+                           style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 9 14; -fx-font-size: 13; -fx-border-width: 2;"/>
+
+            <Button text="🌸  Войти" prefWidth="380" onAction="#handleLogin"
+                    style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-background-radius: 25; -fx-border-radius: 25; -fx-padding: 12; -fx-cursor: hand;"/>
+        </VBox>
+    </Tab>
+
+    <!-- Register Tab -->
+    <Tab text="🌸 Регистрация" closable="false">
+        <VBox spacing="12" style="-fx-padding: 30 40 30 40; -fx-background-color: #FFF0F5;">
+            <Label text="✨ Создать аккаунт"
+                   style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #C71585;"/>
+            <Label text="Заполните поля ниже"
+                   style="-fx-font-size: 12; -fx-text-fill: #DB7093;"/>
+
+            <Label text="Логин:"
+                   style="-fx-font-size: 13; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+            <TextField fx:id="regUsernameField" promptText="Придумайте логин"
+                       style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 9 14; -fx-font-size: 13; -fx-border-width: 2;"/>
+
+            <Label text="Полное имя:"
+                   style="-fx-font-size: 13; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+            <TextField fx:id="regFullNameField" promptText="Ваше имя"
+                       style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 9 14; -fx-font-size: 13; -fx-border-width: 2;"/>
+
+            <Label text="Пароль:"
+                   style="-fx-font-size: 13; -fx-text-fill: #8B0057; -fx-font-weight: bold;"/>
+            <PasswordField fx:id="regPasswordField" promptText="Придумайте пароль"
+                           style="-fx-background-color: white; -fx-border-color: #FFB6C1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 9 14; -fx-font-size: 13; -fx-border-width: 2;"/>
+
+            <Button text="💫  Зарегистрироваться" prefWidth="380" onAction="#handleRegister"
+                    style="-fx-background-color: #FF69B4; -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-background-radius: 25; -fx-border-radius: 25; -fx-padding: 12; -fx-cursor: hand;"/>
+        </VBox>
+    </Tab>
+</TabPane>
